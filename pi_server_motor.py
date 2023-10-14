@@ -11,16 +11,9 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind(ADDR)
 tcpSerSock.listen(5)
 
-PORT = 21566
-ADDR = (HOST,PORT)
-tcpSerSock_send = socket(AF_INET, SOCK_STREAM)
-tcpSerSock_send.bind(ADDR)
-tcpSerSock_send.listen(5)
-
 while True:
         print('Waiting for connection')
         tcpCliSock,addr = tcpSerSock.accept()
-        tcpSerSock_send,addr = tcpSerSock_send.accept()
         print('...connected from : ' + str(addr))
         try:
             while True:
@@ -36,9 +29,9 @@ while True:
                     if command == "INC":
                             print("Increase")
                             data_send = "holaaa"
-                            tcpSerSock_send.send(data_send.encode())
+                            tcpCliSock.send(data_send.encode())
                             data_end = "\n"
-                            tcpSerSock_send.send(data_end.encode())
+                            tcpCliSock.send(data_end.encode())
                             # GPIO.output(26,GPIO.HIGH)
                     elif command == "DECR":
                             print("Decrease")
