@@ -4,13 +4,9 @@ import numpy as np
 import cv2
 import socket
 import io
-import sys
 import struct
 from PIL import Image
-from multiprocessing import Process
-from Command import COMMAND as cmd
 from threading import Thread
-from Thread import *
 
 class VideoStreaming:
     def __init__(self):
